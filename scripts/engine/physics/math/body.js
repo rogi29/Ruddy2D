@@ -91,5 +91,4 @@
 
     $2D.physics.Body = Body;
     $2D.Body = Body;
-
 }());

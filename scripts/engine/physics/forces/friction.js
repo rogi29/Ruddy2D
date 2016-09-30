@@ -14,21 +14,18 @@
             return new Friction(body);
         }
 
-
         this.body = body;
-        this.force = false;
     };
 
     Friction.prototype = {
         applyForce: function(body)
         {
-            var vector = $2D.Vector(0,0), uN = body.get('friction'), velocity = body.get('vel');
+            var vector = $2D.physics.Vector(0,0), uN = body.get('friction'), velocity = body.get('vel'), clone = velocity.clone();
             vector.add(velocity);
             vector.normalise();
             vector.mult((-1)*uN);
 
-            this.force = $2D.physics.Force(vector);
-            this.force.applyForce(body);
+            $2D.physics.Force(vector).applyForce(body.attributes.acc, this.body.get('mass'));
         }
     };
 

@@ -32,6 +32,23 @@
             return {x: x, y: y};
         },
 
+        transform: function(vector, angle, origin)
+        {
+            var clone = vector.clone();
+
+            if(!origin) {
+                origin = vector;
+            }
+
+            clone.x -= origin.x;
+            clone.y -= origin.y;
+
+            return {
+                x: vector.x * cos(angle) - vector.y * sin(angle) + origin.x + clone.x,
+                y: vector.x * sin(angle) + vector.y * cos(angle) + origin.y + clone.y
+            };
+        },
+
         get: function (x, y)
         {
             return atan2(y, x);

@@ -84,7 +84,7 @@
             this.x *= scalar;
             this.y *= scalar;
 
-            //return this;
+            return this;
         },
 
         /**
@@ -119,19 +119,20 @@
          * Square the current vector
          *
          * @param clone
-         * @returns {{x: number, y: number}}
+         * @returns {*}
          */
         square: function (clone)
         {
             var x = this.x*this.x,
                 y = this.y*this.y;
 
-            if(clone !== true) {
-                this.x = x;
-                this.y = y;
+            if(clone) {
+                return {x: x, y: y};
             }
 
-            return {x: x, y: y};
+            this.x = x;
+            this.y = y;
+            return this;
         },
 
         /**
@@ -141,7 +142,6 @@
          */
         normalise: function()
         {
-
             this.x *= (1/this.getMag());
             this.y *= (1/this.getMag());
 
@@ -268,7 +268,22 @@
          */
         rotate: function(angle, isDegrees)
         {
-            return $2D.physics.Angles.rotate(this, angle, isDegrees);
+            var axis = $2D.physics.Angles.rotate(this, angle);
+
+            this.x = axis.x;
+            this.y = axis.y;
+
+            return axis;
+        },
+
+        transform: function(angle, origin)
+        {
+            var axis = $2D.physics.Angles.transform(this, angle, origin)
+
+            this.x = axis.x;
+            this.y = axis.y;
+
+            return axis;
         },
 
         /**

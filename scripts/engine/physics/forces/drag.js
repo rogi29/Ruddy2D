@@ -19,8 +19,7 @@
                 formula = (-0.5) * area * density * Cd * speed * speed, force;
 
             vector.setMag(formula);
-            force = $2D.physics.Force(vector);
-            force.applyForce(body.get('acc'), body.get('mass'));
+            $2D.physics.Force(vector).applyForce(body.get('acc'), body.get('mass'));
         }
     };
 

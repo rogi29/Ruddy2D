@@ -22,16 +22,20 @@
         this.rows       = parseInt(height / size);
         this.size       = size;
 
-        var c, r, cLen = this.columns, rLen = this.rows, grid = [];
+        var c, r, cLen = this.columns, rLen = this.rows, grid = [], nGrid = [];
+
 
         for(c = 0; c <= cLen; c++){
             grid[c] = [];
+            nGrid[c] = [];
             for(r = 0; r <= rLen; r++){
                 grid[c][r] = [];
+                nGrid[c][r] = 0;
             }
         }
 
         this.grid = grid;
+        this.nGrid = nGrid;
     };
 
     Spatial.prototype = {
@@ -53,6 +57,7 @@
             for(var y = pos[1]; y <= bY; y++){
                 for(var x = pos[0]; x <= bX; x++){
                     if(this.grid[x][y].indexOf(obj) == -1) {
+                        this.nGrid[y][x] = 1;
                         this.grid[x][y].push(obj);
                     }
                 }
@@ -66,11 +71,12 @@
 
             for(var y = pos[1]; y <= bY; y++){
                 for(var x = pos[0]; x <= bX; x++){
-                    this.grid[x][y].forEach(function(e){
-                        if(e !== obj && objects.indexOf(e)==  -1) {
-                            objects.push(e);
+                    var e = this.grid[x][y], len = this.grid[x][y].length;
+                    for(var i = 0; i < len; i++){
+                        if(e[i] !== obj && objects.indexOf(e[i]) ==  -1) {
+                            objects.push(e[i]);
                         }
-                    });
+                    }
                 }
             }
 
@@ -95,19 +101,22 @@
 
         clear: function()
         {
-            var c, r, cLen = this.columns, rLen = this.rows, grid = [];
+            var c, r, cLen = this.columns, rLen = this.rows, grid = [], nGrid = [];
 
             for(c = 0; c <= cLen; c++){
                 grid[c] = [];
+                nGrid[c] = [];
                 for(r = 0; r <= rLen; r++){
                     grid[c][r] = [];
+                    nGrid[c][r] = 0;
                 }
             }
 
             this.grid = grid;
+            this.nGrid = nGrid;
         },
 
-        render: function(){
+        render: function(color){
             var posX, posY, graphics = new PIXI.Graphics();
 
             for(var y = 0; y <= this.rows; y++){
@@ -117,7 +126,7 @@
 
                     graphics.beginFill();
                     if(this.grid[x][y].length > 0) {
-                        graphics.beginFill(0xADD8E6);
+                        graphics.beginFill(color || 0xADD8E6);
                     }
 
                     graphics.drawRect(posX, posY, this.size, this.size);

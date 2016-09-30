@@ -1,4 +1,4 @@
-(function() {
+(function($r) {
     $r(document).on('keydown', function () {
         user.key.id = this.e.keyCode || this.e.which;
         user.key.event = true;
@@ -34,4 +34,4 @@
 
     $2D.user = user;
 
-}());
+}($r));

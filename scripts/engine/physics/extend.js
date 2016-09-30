@@ -1,3 +1,6 @@
 (function() {
-    $2D = $r().extendArrays($2D.physics, $2D);
+    $obj ($2D.physics).forEach(function(v, k){
+        if(!$2D[k])
+            $2D[k] = v;
+    });
 }());

@@ -10,6 +10,8 @@
  */
 
 (function() {
+    var args;
+
     /**
      * Ruddy2D instance
      */
@@ -36,7 +38,7 @@
             engine.stats.showPanel( properties.type );
             document.body.appendChild( engine.stats.dom );
         }
-        window.addEventListener("load", callback());
+        $doc (document).addEventListener("load", callback.apply(args));
     };
 
     /**
@@ -45,23 +47,26 @@
      * @param callback
      */
     engine.run = function(callback) {
+
         if(engine.stats != false) {
             var run = function () {
                 engine.stats.begin();
 
-                callback();
+                callback.apply(args);
 
                 engine.stats.end();
                 window.requestAnimationFrame(run);
             }
+            $doc (document).addEventListener("load", run());
+            return;
 
-        } else {
-            var run = function(){
-                callback();
-                window.requestAnimationFrame(run);
-            };
         }
-        window.addEventListener("load", run());
+
+        var run = function(){
+            callback();
+            window.requestAnimationFrame(run);
+        };
+        $doc (document).addEventListener("load", run());
     };
 
     window.$2D = engine;
