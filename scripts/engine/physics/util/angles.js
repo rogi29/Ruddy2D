@@ -1,74 +1,90 @@
 (function() {
-
-    var sqrt    = Math.sqrt,
-        min     = Math.min,
-        max     = Math.max,
-        cos     = Math.cos,
-        sin     = Math.sin,
-        tan     = Math.tan,
-        PI      = Math.PI,
-        acos    = Math.acos,
-        asin    = Math.asin,
-        atan    = Math.atan,
-        atan2   = Math.atan2;
-
+    var math    = $2D.physics.Math;
 
     var Angles = {
         toDegrees: function(radians)
         {
-            return radians*(180/PI);
+            return radians*(180/math.PI);
         },
 
         toRadians: function(degrees)
         {
-            return degrees*(PI/180);
+            return degrees*(math.PI/180);
         },
 
         rotate: function (vector, angle)
         {
-            var x = vector.x * cos(angle) - vector.y * sin(angle),
-                y = vector.x * sin(angle) + vector.y * cos(angle);
+            var x = vector.x * math.cos(angle) - vector.y * math.sin(angle),
+                y = vector.x * math.sin(angle) + vector.y * math.cos(angle);
 
             return {x: x, y: y};
         },
 
-        transform: function(vector, angle, origin)
-        {
-            var clone = vector.clone();
+        transform: function(pos, size, angle) {
+                var rect    = {x: pos.x, y: pos.y, w: size.w, h: size.y},
+                    width   = size.w,
+                    height  = size.h,
+                    c       = math.cos(angle),
+                    s       = math.sin(angle),
+                    cpos    = true,
+                    spos    = true;
 
-            if(!origin) {
-                origin = vector;
-            }
+                if (s < 0) {
+                    s = -s;
+                    spos = false;
+                }
 
-            clone.x -= origin.x;
-            clone.y -= origin.y;
+                if (c < 0) {
+                    c = -c;
+                    cpos = false;
+                }
 
-            return {
-                x: vector.x * cos(angle) - vector.y * sin(angle) + origin.x + clone.x,
-                y: vector.x * sin(angle) + vector.y * cos(angle) + origin.y + clone.y
-            };
+                rect.w = height * s + width * c;
+                rect.h = height * c + width * s;
+
+                if (cpos) {
+                    if (spos)
+                        rect.x -= height * s;
+                    else
+                        rect.y -= width * s;
+                } else if (spos) {
+                    rect.x -= width * c - height * s;
+                    rect.y -= height * c;
+                } else {
+                    rect.x -= width * c;
+                    rect.y -= width * s + height * c;
+                }
+
+                return rect;
+
+            /*
+            var minx = Math.min(Math.min(region.x1(), region.x2()), Math.min(region.x3(), region.x4())); // region is your rotating region object
+            var miny = Math.min(Math.min(region.y1(), region.y2()), Math.min(region.y3(), region.y4())); // region is your rotating region object
+            var maxx = Math.max(Math.max(region.x1(), region.x2()), Math.max(region.x3(), region.x4())); // region is your rotating region object
+            var maxy = Math.max(Math.max(region.y1(), region.y2()), Math.max(region.y3(), region.y4()));
+            */
         },
 
         get: function (x, y)
         {
-            return atan2(y, x);
+            return math.atan2(y, x);
         },
 
         getTo: function (vector, vector2)
         {
-            return atan2((vector2.y - vector.y), (vector2.x - vector.x));
+            return math.atan2((vector2.y - vector.y), (vector2.x - vector.x));
         },
 
         toAxis: function (angle, radius)
         {
-            return [cos(angle)*radius, sin(angle)*radius];
+            return [math.cos(angle)*radius, math.sin(angle)*radius];
         },
 
         getBetween: function (vector, vector2)
         {
             var dot = vector.dot(vector2);
 
-            return acos(dot / (vector.getMag() * vector2.getMag()));
+            return math.cos(dot / (vector.getMag() * vector2.getMag()));
         }
     };
 

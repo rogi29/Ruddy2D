@@ -1,10 +1,20 @@
+/**
+ * Ruddy2D Algorithms - Spatial Grid
+ *
+ *  @package    ruddy2D
+ *  @author     Gil Nimer <info@ruddymonkey.com>
+ *  @author     Nick Vlug <info@ruddy.nl>
+ *  @copyright  Copyright 2016 Ruddy Monkey studios & ruddy.nl
+ *  @version    0.0.1
+ *
+ * http://ruddymonkey.com/ruddy2d/physics/algorithms
+ */
+
 (function() {
-    var min     = Math.min,
-        max     = Math.max;
+    var math = $2D.physics.Math;
 
     /**
      * Spatial Grid
-     * note: performance check - use ~~+ or ~~ instead of parseInt
      *
      * @param width
      * @param height
@@ -18,8 +28,8 @@
             return new Spatial(width, height, size);
         }
 
-        this.columns    = parseInt(width / size);
-        this.rows       = parseInt(height / size);
+        this.columns    = math.floor(width / size);
+        this.rows       = math.floor(height / size);
         this.size       = size;
 
         var c, r, cLen = this.columns, rLen = this.rows, grid = [], nGrid = [];
@@ -36,17 +46,24 @@
 
         this.grid = grid;
         this.nGrid = nGrid;
+
     };
 
     Spatial.prototype = {
-        aabb: function (x, y, w, h)
-        {
-            var aX = max(0, parseInt(x / this.size)),
-                aY = max(0, parseInt(y / this.size)),
-                bX = min(this.columns, parseInt((x + w) / this.size)),
-                bY = min(this.rows, parseInt((y + h) / this.size));
+        generate: function() {
+            var c, r, cLen = this.columns, rLen = this.rows, grid = [], nGrid = [];
 
-            return [aX, aY, bX, bY];
+            for(c = 0; c <= cLen; c++){
+                grid[c] = [];
+                nGrid[c] = [];
+                for(r = 0; r <= rLen; r++){
+                    grid[c][r] = [];
+                    nGrid[c][r] = 0;
+                }
+            }
+
+            this.grid = grid;
+            this.nGrid = nGrid;
         },
 
         insert: function(rect, obj)
@@ -99,21 +116,14 @@
             }
         },
 
-        clear: function()
+        aabb: function (x, y, w, h)
         {
-            var c, r, cLen = this.columns, rLen = this.rows, grid = [], nGrid = [];
+            var aX = math.max(0, parseInt(x / this.size)),
+                aY = math.max(0, parseInt(y / this.size)),
+                bX = math.min(this.columns, parseInt((x + w-1) / this.size)),
+                bY = math.min(this.rows, parseInt((y + h-1) / this.size));
 
-            for(c = 0; c <= cLen; c++){
-                grid[c] = [];
-                nGrid[c] = [];
-                for(r = 0; r <= rLen; r++){
-                    grid[c][r] = [];
-                    nGrid[c][r] = 0;
-                }
-            }
-
-            this.grid = grid;
-            this.nGrid = nGrid;
+            return [aX, aY, bX, bY];
         },
 
         render: function(color){
@@ -126,11 +136,19 @@
 
                     graphics.beginFill();
                     if(this.grid[x][y].length > 0) {
-                        graphics.beginFill(color || 0xADD8E6);
+                        graphics.beginFill(color || 0x333333);
                     }
 
-                    graphics.drawRect(posX, posY, this.size, this.size);
+                    graphics.lineStyle(2, 0x222222);
+                    graphics.moveTo(posX, posY);
+                    graphics.lineTo(posX, 0);
 
+                    graphics.lineStyle(2, 0x222222);
+                    graphics.moveTo(posX, posY);
+                    graphics.lineTo(0, posY);
+
+
+                    graphics.drawRect(posX, posY, this.size, this.size);
                     graphics.endFill();
                 }
             }

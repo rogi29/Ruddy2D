@@ -1,12 +1,16 @@
+/**
+ * Ruddy2D Forces - Friction
+ *
+ *  @package    ruddy2D
+ *  @author     Gil Nimer <info@ruddymonkey.com>
+ *  @author     Nick Vlug <info@ruddy.nl>
+ *  @copyright  Copyright 2016 Ruddy Monkey studios & ruddy.nl
+ *  @version    0.0.1
+ *
+ * http://ruddymonkey.com/ruddy2d/physics/forces
+ */
+
 (function() {
-
-    var sqrt    = Math.sqrt,
-        min     = Math.min,
-        max     = Math.max,
-        cos     = Math.cos,
-        sin     = Math.sin,
-        atan2   = Math.atan2;
-
 
     var Friction = function (body) {
 
@@ -20,12 +24,16 @@
     Friction.prototype = {
         applyForce: function(body)
         {
-            var vector = $2D.physics.Vector(0,0), uN = body.get('friction'), velocity = body.get('vel'), clone = velocity.clone();
-            vector.add(velocity);
-            vector.normalise();
-            vector.mult((-1)*uN);
+            var force       = $2D.physics.Vector(0,0),
+                velocity    = body.get('vel'),
+                clone       = velocity.clone(),
+                uN          = body.get('friction');
 
-            $2D.physics.Force(vector).applyForce(body.attributes.acc, this.body.get('mass'));
+            force.add(velocity);
+            force.normalise();
+            force.mult((-1)*uN);
+
+            $2D.physics.Force(force).applyForce(body);
         }
     };
 

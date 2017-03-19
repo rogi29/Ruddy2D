@@ -1,3 +1,15 @@
+/**
+ * Ruddy2D Forces - Attraction
+ *
+ *  @package    ruddy2D
+ *  @author     Gil Nimer <info@ruddymonkey.com>
+ *  @author     Nick Vlug <info@ruddy.nl>
+ *  @copyright  Copyright 2016 Ruddy Monkey studios & ruddy.nl
+ *  @version    0.0.1
+ *
+ * http://ruddymonkey.com/ruddy2d/physics/froces
+ */
+
 (function() {
 
     var sqrt    = Math.sqrt,
@@ -28,7 +40,7 @@
             formula = this.body.get('mass') * body.get('mass') / (distance * distance);
             force.mult(formula);
 
-            $2D.physics.Force(force).applyForce(body.attributes.acc, this.body.get('mass'));
+            $2D.physics.Force(force).applyForce(body);
         }
     };
 

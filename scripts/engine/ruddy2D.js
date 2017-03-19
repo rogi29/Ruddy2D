@@ -1,8 +1,9 @@
 /**
- * ruddy2D JavaScript 2D Game Engine
+ * Ruddy2D JavaScript 2D Game Engine
  *
  *  @package    ruddy2D
- *  @author     Gil Nimer
+ *  @author     Gil Nimer <info@ruddymonkey.com>
+ *  @author     Nick Vlug <info@ruddy.nl>
  *  @copyright  Copyright 2016 Ruddy Monkey studios & ruddy.nl
  *  @version    0.0.1
  *
@@ -10,7 +11,9 @@
  */
 
 (function() {
-    var args;
+    var args,
+        updates = {},
+        events  = {};
 
     /**
      * Ruddy2D instance
@@ -23,6 +26,7 @@
         entities:       [],
         systems:        {},
         user:           {},
+
         stats: false
     };
 
@@ -39,6 +43,27 @@
             document.body.appendChild( engine.stats.dom );
         }
         $doc (document).addEventListener("load", callback.apply(args));
+    };
+
+    /**
+     * Update in a loop
+     *
+     * @param id
+     * @param condition
+     * @param callback
+     */
+    engine.update = function(id, condition, callback) {
+        if(!(updates[id]))
+            updates[id] = 0;
+
+        if(condition && updates[id] < 1) {
+            if(updates[id] == 0)
+                callback.call(this, updates, id);
+
+            updates[id]++;
+        } else {
+            updates[id] = 0;
+        }
     };
 
     /**

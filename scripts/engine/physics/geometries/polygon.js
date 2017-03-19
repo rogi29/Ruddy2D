@@ -1,29 +1,40 @@
-circle.js(function() {
+/**
+ * Ruddy2D Geometries - Polygon
+ *
+ *  @package    ruddy2D
+ *  @author     Gil Nimer <info@ruddymonkey.com>
+ *  @author     Nick Vlug <info@ruddy.nl>
+ *  @copyright  Copyright 2016 Ruddy Monkey studios & ruddy.nl
+ *  @version    0.0.1
+ *
+ * http://ruddymonkey.com/ruddy2d/physics/geometries
+ */
+
+(function() {
     var PI = Math.PI;
 
-    var Circle = function (vector, r){
+    var Polygon = function (x, y, nodes){
 
-        if(!(this instanceof Circle)){
-            return new Circle();
+        if(!(this instanceof Polygon)){
+            return new Polygon(x, y, nodes);
         }
 
-        this.name   = 'circle';
-        this.body   = $2D.physics.body();
-        this.vector = vector;
+        this.name   = 'polygon';
+        this.vector = $2D.physics.Vector(x, y);
     };
 
-    Circle.prototype = {
+    Polygon.prototype = {
         getArea: function ()
         {
-            return (PI * this.r * this.r);
+
         },
 
         getSurface: function ()
         {
-            return (2 * PI * this.r);
+
         }
     };
 
-    $2D.physics.Circle = Circle;
+    $2D.physics.Polygon = Polygon;
 
 }());

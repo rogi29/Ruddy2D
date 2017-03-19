@@ -1,7 +1,15 @@
+<?php
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0"); // Proxies.
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
         <title>Entity Framework</title>
         <style>
 			body {
@@ -26,7 +34,7 @@
     <script src="scripts/lib/json3.min.js"></script>
     <script src="scripts/lib/perlin.js"></script>
 
-    <!------------ Ruddy2D ------------>
+    <!------------- Ruddy2D ------------->
     <!-- Engine -->
     <script src="scripts/engine/ruddy2D.js"></script>
     <script src="scripts/engine/settings.engine.js"></script>
@@ -87,6 +95,6 @@
     <script src="scripts/engine/physics/extend.js"></script>
 
     <!-- Test -->
-    <script src="scripts/data/worlds/main.world.js"></script>
+    <script src="scripts/data/worlds/steering.world.js"></script>
     </body>
 </html>

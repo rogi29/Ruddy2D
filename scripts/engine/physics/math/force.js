@@ -8,17 +8,14 @@
 
         if(vector instanceof $2D.physics.Vector){
             this.vector = vector;
-            this.magnitude = vector.getMag();
         }
     };
 
     Force.prototype = {
-
-        applyForce: function(vector, mass)
+        applyForce: function(body)
         {
-            //debug(vector);
-            this.vector.divi(mass);
-            vector.add(this.vector);
+            this.vector.divi(body.get('mass'));
+            body.get('acc').add(this.vector);
         }
     };
 

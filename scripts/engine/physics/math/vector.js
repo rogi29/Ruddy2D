@@ -21,16 +21,6 @@
 
     Vector.prototype = {
         /**
-         * Get x and y values of the current vector
-         *
-         * @returns {Vector}
-         */
-        get: function()
-        {
-            return this;
-        },
-
-        /**
          * Set x and y values of the current vector
          *
          * @param x
@@ -127,7 +117,7 @@
                 y = this.y*this.y;
 
             if(clone) {
-                return {x: x, y: y};
+                return $2D.physics.Vector(x, y);
             }
 
             this.x = x;
@@ -168,6 +158,18 @@
         cross: function(vector)
         {
             return (this.x * vector.x) - (this.y * vector.y);
+        },
+
+        /**
+         * Scaler Projection
+         *
+         * @param vector
+         * @returns {*|Vector}
+         */
+        scaler: function(vector)
+        {
+            var clone = vector.clone();
+            return clone.setMag(this.dot(clone));
         },
 
         /**
@@ -276,6 +278,12 @@
             return axis;
         },
 
+        /**
+         *
+         * @param angle
+         * @param origin
+         * @returns {*|{x, y}}
+         */
         transform: function(angle, origin)
         {
             var axis = $2D.physics.Angles.transform(this, angle, origin)
@@ -306,7 +314,7 @@
             var radius = this.getMag(),
                 array = $2D.physics.Angles.toAxis(angle, radius);
 
-            if(mirror === true) {
+            if(mirror) {
                 this.x = array[1];
                 this.y = array[0];
 
@@ -317,6 +325,15 @@
             this.y = array[1];
 
             return this;
+        },
+
+        /**
+         * Heading rotation
+         *
+         * @returns {number}
+         */
+        heading: function() {
+            return (-Math.atan2(-this.y, this.x));
         },
 
         /**
