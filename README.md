@@ -11,7 +11,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 ** [check] represents a feature that has been built. **
 
 ##System
-
 	*ECS [check]
 	
 	*GUI
@@ -37,7 +36,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*Components
 
 ##Physics
-
 	*Vectors [check]
 	
 	*Attraction Force [check]
@@ -69,7 +67,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*More Forces
 
 ##AI
-
 	*Path Finding
 	
 	*Steering Behaviours
@@ -81,7 +78,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*Procedural Generation
 	
 ##Projections
-
 	*Sides Scroll
 	
 	*Orthogonal
@@ -91,7 +87,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*Hexagonal
 
 ###Cameras
-
 	*auto-scroll
 	
 	*camera-path
