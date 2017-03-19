@@ -10,7 +10,8 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 
 ** [check] represents a feature that has been built. **
 
-##System
+## System
+
 	*ECS [check]
 	
 	*GUI
@@ -35,7 +36,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*Components
 
-##Physics
+## Physics
 	*Vectors [check]
 	
 	*Attraction Force [check]
@@ -66,7 +67,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*More Forces
 
-##AI
+## AI
 	*Path Finding
 	
 	*Steering Behaviours
@@ -77,7 +78,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*Procedural Generation
 	
-##Projections
+## Projections
 	*Sides Scroll
 	
 	*Orthogonal
@@ -86,7 +87,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*Hexagonal
 
-###Cameras
+### Cameras
 	*auto-scroll
 	
 	*camera-path
@@ -100,6 +101,6 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*lerp-smoothing
 	
 	*physics-smoothing
- 
- ##Next Step
+
+### Next Step
 The next step is to move the project to a NodeJS environment and add a multiplayer and online features including a server builder.
