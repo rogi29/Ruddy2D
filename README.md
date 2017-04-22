@@ -76,6 +76,8 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*Behaviors Tree
 	
+	*States Machine
+	
 	*Neural Network
 	
 	*Procedural Generation
