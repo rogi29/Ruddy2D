@@ -9,6 +9,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 ## Todo List
 
 ** [check] represents a feature that has been built. **
+
 ** [progress] represents a feature that has is in progress. **
 
 ## System
