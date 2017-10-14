@@ -9,6 +9,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 ## Todo List
 
 ** [check] represents a feature that has been built. **
+** [progress] represents a feature that has is in progress. **
 
 ## System
 
@@ -16,7 +17,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*GUI
 	
-	*Physics
+	*Physics [progress]
 	
 	*AI
 	
@@ -30,9 +31,9 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*PIXI effects
 	
-	*Assamblages
+	*Assamblages [progress]
 	
-	*Systems
+	*Systems [progress]
 	
 	*Components
 
@@ -43,7 +44,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	
 	*Drag Force [check]
 	
-	*Friction Force
+	*Friction Force [progress]
 	
 	*Pendulum Force
 	
@@ -68,11 +69,11 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 	*More Forces
 
 ## AI
-	*Path Finding
+	*Path Finding [progress]
 	
-	*Steering Behaviours
+	*Steering Behaviours [progress]
 	
-	*Flow Field
+	*Flow Field [progress]
 	
 	*Behaviors Tree
 	
