@@ -10,7 +10,7 @@ Bear in mind, Ruddy2D is an early stage of development and it is a long run proj
 
 ** [check] represents a feature that has been built. **
 
-** [progress] represents a feature that has is in progress. **
+** [progress] represents a feature that is in progress. **
 
 ## System
 
