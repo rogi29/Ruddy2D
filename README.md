@@ -1,3 +1,5 @@
+# !THE PROJECT WAS ABONDED BUT IS STILL A GREAT LEARNING EXPIRIENCE TO SHARE.!
+
 # Ruddy2D
 
 Ruddy2D is an ambitious project to build a full 2D Javascript Game Engine that would handle small projects like puzzle games and more complex projects like RPG games and even MMORPG type of games.
